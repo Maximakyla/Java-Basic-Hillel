@@ -13,19 +13,22 @@ public class ArraySearchAndSort {
         randomArrayValue(array, random);
 
         print(array);
+
+
+        bubbleSort(array);
+        print(array);
         scanner.close();
     }
 
-
-
-
-
-
-
-
-
-
-
+    private static void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] > array[i + 1]){
+                int tmp = array[i];
+                array[i]= array[i+1];
+                array[i+1] = tmp;
+            }
+        }
+    }
 
 
     private static void randomArrayValue(int[] array, Random random) {
