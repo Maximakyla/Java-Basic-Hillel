@@ -10,17 +10,7 @@ public class ArraySearchAndSort {
         int arrayLength = scanner.nextInt();
         int[] array = new int[arrayLength];
         Random random = new Random();
-
-        int randomMinimum = 1;
-        int randomMaximum = 100;
-        for (int i = 0; i < array.length; i++) {
-            int randomNumber = random.nextInt(randomMaximum - randomMinimum + 1) + randomMinimum;
-            array[i] = randomNumber;
-        }
-
-//        if (array.length == 0) {
-//            System.out.print("Empty array created");
-//        }
+        randomArrayValue(array, random);
 
         print(array);
         scanner.close();
@@ -38,9 +28,14 @@ public class ArraySearchAndSort {
 
 
 
-
-
-
+    private static void randomArrayValue(int[] array, Random random) {
+        int randomMinimum = 1;
+        int randomMaximum = 100;
+        for (int i = 0; i < array.length; i++) {
+            int randomNumber = random.nextInt(randomMaximum - randomMinimum + 1) + randomMinimum;
+            array[i] = randomNumber;
+        }
+    }
 
 
     private static void print(int[] array) {
@@ -49,7 +44,7 @@ public class ArraySearchAndSort {
         }
         for (int i = 0; i < array.length; i++) {
             if (i == 0) {
-                System.out.print("Array elements: [ ");
+                System.out.print("Initial array elements: [ ");
             }
             if (i == array.length - 1) {
                 System.out.printf("%d ", array[i]);
