@@ -20,18 +20,28 @@ public class ArraySearchAndSort {
         scanner.close();
     }
 
-    private static void bubbleSort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if(array[i] > array[i + 1]){
-                int tmp = array[i];
-                array[i]= array[i+1];
-                array[i+1] = tmp;
+
+    public static void bubbleSort(int[] array) {
+        boolean sorted = false;
+        for (int j = 0; j < array.length; j++) {
+            if (sorted) {
+                break;
+            }
+            sorted = true;
+            for (int i = 0; i < array.length - j - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    int tmp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = tmp;
+                    sorted = false;
+                }
             }
         }
+
     }
 
 
-    private static void randomArrayValue(int[] array, Random random) {
+    public static void randomArrayValue(int[] array, Random random) {
         int randomMinimum = 1;
         int randomMaximum = 100;
         for (int i = 0; i < array.length; i++) {
@@ -41,13 +51,13 @@ public class ArraySearchAndSort {
     }
 
 
-    private static void print(int[] array) {
+    public static void print(int[] array) {
         if (array.length == 0) {
             System.out.print("Empty array created");
         }
         for (int i = 0; i < array.length; i++) {
             if (i == 0) {
-                System.out.print("Initial array elements: [ ");
+                System.out.print("Array elements: [ ");
             }
             if (i == array.length - 1) {
                 System.out.printf("%d ", array[i]);
