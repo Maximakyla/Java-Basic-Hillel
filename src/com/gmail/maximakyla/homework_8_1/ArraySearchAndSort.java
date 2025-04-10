@@ -10,34 +10,26 @@ public class ArraySearchAndSort {
         int arrayLength = scanner.nextInt();
         int[] array = new int[arrayLength];
         Random random = new Random();
+
         randomArrayValue(array, random);
-
         print(array);
-
-
-        bubbleSort(array);
+        insertionSort(array);
         print(array);
         scanner.close();
+
     }
 
 
-    public static void bubbleSort(int[] array) {
-        boolean sorted = false;
-        for (int j = 0; j < array.length; j++) {
-            if (sorted) {
-                break;
+    private static void insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int currentArrayElement = array[i];
+            int j = i;
+            while (j > 0 && array[j - 1] > currentArrayElement) {
+                array[j] = array[j - 1];
+                j--;
             }
-            sorted = true;
-            for (int i = 0; i < array.length - j - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    int tmp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = tmp;
-                    sorted = false;
-                }
-            }
+            array[j] = currentArrayElement;
         }
-
     }
 
 
