@@ -15,12 +15,32 @@ public class ArraySearchAndSort {
         print(array);
         insertionSort(array);
         print(array);
-        scanner.close();
 
+        System.out.println("Input value of searching element in the array");
+        int searchingElement = scanner.nextInt();
+        binarySearch(array, searchingElement);
+
+        scanner.close();
     }
 
+    public static int binarySearch(int[] array, int searchingElement) {
+        int leftIndex = 0;
+        int rightIndex = array.length - 1;
+        while (leftIndex <= rightIndex) {
+            int middleIndex = leftIndex + (rightIndex - leftIndex) / 2;
 
-    private static void insertionSort(int[] array) {
+            if (array[middleIndex] == searchingElement) {
+                return middleIndex;
+            } else if (array[middleIndex] < searchingElement) {
+                leftIndex = middleIndex + 1;
+            } else {
+                rightIndex = middleIndex - 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int currentArrayElement = array[i];
             int j = i;
