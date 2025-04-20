@@ -10,16 +10,18 @@ public class ArraySearchAndSort {
         int arrayLength = scanner.nextInt();
         int[] array = new int[arrayLength];
         Random random = new Random();
-
         randomArrayValue(array, random);
         print(array);
         insertionSort(array);
         print(array);
-
         System.out.println("Input value of searching element in the array");
         int searchingElement = scanner.nextInt();
-        binarySearch(array, searchingElement);
-
+        int position = binarySearch(array, searchingElement);
+        if (position >= 0) {
+            System.out.printf("Searching element found at position %d", position);
+        } else {
+            System.out.println("Searching element is not found in the array");
+        }
         scanner.close();
     }
 
