@@ -18,68 +18,65 @@ public class MultiDimensionsArray {
         int randomMaximumLimit = scanner.nextInt();
         arrayRandomFill(array, random, randomMaximumLimit, randomMinimumLimit);
         arrayPrint(firstDimensionArrayLength, secondDimensionArrayLength, array);
-        sumOfEvenOrOddNumbersInRow(array);
-        multiplyOfEvenOrOddNumbersInColumn(array);
-        isArrayMagicSquare(array, firstDimensionArrayLength, secondDimensionArrayLength);
+        System.out.printf("Sum of numbers in even row is: %d \n", sumOfEvenOrOddNumbersInRow(array, true));
+        System.out.printf("Sum of numbers in odd row is: %d \n", sumOfEvenOrOddNumbersInRow(array, false));
+        System.out.printf("Multiply of all elements in even column is: %d \n", multiplyOfEvenOrOddNumbersInColumn(array, true));
+        System.out.printf("Multiply of all elements in odd column is: %d \n", multiplyOfEvenOrOddNumbersInColumn(array, false));
+        if (isArrayMagicSquare(array, firstDimensionArrayLength, secondDimensionArrayLength)) {
+            System.out.println("It is a magic square!");
+        } else {
+            System.out.println("It is not a magic square!");
+        }
         scanner.close();
     }
 
 
-    private static void isArrayMagicSquare(int[][] array, int firstDimensionArrayLength, int secondDimensionArrayLength) {
+    private static boolean isArrayMagicSquare(int[][] array, int firstDimensionArrayLength, int secondDimensionArrayLength) {
+        if (firstDimensionArrayLength != secondDimensionArrayLength && firstDimensionArrayLength < 2) {
+            return false;
+        }
         int sumRow = 0;
         for (int i = 0; i < array.length; i++) {
             sumRow += array[0][i];
         }
-        boolean isEqual = true;
-        if (firstDimensionArrayLength != secondDimensionArrayLength) {
-            isEqual = false;
-        }
         int rowCheck = 0;
-        for (int i = 1; isEqual && i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 rowCheck += array[i][j];
             }
             if (sumRow != rowCheck) {
-                isEqual = false;
-                break;
+                return false;
             }
             rowCheck = 0;
         }
         int columnCheck = 0;
-        for (int i = 0; isEqual && i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 columnCheck += array[j][i];
             }
             if (columnCheck != sumRow) {
-                isEqual = false;
-                break;
+                return false;
             }
             columnCheck = 0;
         }
         int diagonal = 0;
-        for (int i = 0; isEqual && i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             diagonal += array[i][i];
         }
         if (diagonal != sumRow) {
-            isEqual = false;
+            return false;
         }
         diagonal = 0;
         int j = array.length - 1;
-        for (int i = 0; isEqual && i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             diagonal += array[i][j];
             j--;
         }
-        if (diagonal != sumRow) {
-            isEqual = false;
-        }
-        if (isEqual) {
-            System.out.println("It is a magic square!");
-        } else {
-            System.out.println("It is not a magic square");
-        }
+        return diagonal == sumRow;
     }
 
-    private static void multiplyOfEvenOrOddNumbersInColumn(int[][] array) {
+
+    private static long multiplyOfEvenOrOddNumbersInColumn(int[][] array, boolean evenChecker) {
         System.out.println();
         long evenColumn = 1;
         long oddColumn = 1;
@@ -92,27 +89,33 @@ public class MultiDimensionsArray {
                 }
             }
         }
-        System.out.printf("Multiply of all elements in even column is: %d \n", evenColumn);
-        System.out.printf("Multiply of all elements in odd column is: %d \n\n", oddColumn);
+        if (evenChecker) {
+            return evenColumn;
+        } else {
+            return oddColumn;
+        }
     }
 
-    private static void sumOfEvenOrOddNumbersInRow(int[][] array) {
+    private static int sumOfEvenOrOddNumbersInRow(int[][] array, boolean evenChecker) {
         System.out.println();
-        int oddNumbers = 0;
-        int evenNumbers = 0;
+        int sumOddRow = 0;
+        int sumEvenRow = 0;
         for (int i = 0; i < array.length; i++) {
             if (i % 2 == 0) {
                 for (int j = 0; j < array[i].length; j++) {
-                    evenNumbers += array[i][j];
+                    sumEvenRow += array[i][j];
                 }
             } else {
                 for (int k = 0; k < array[i].length; k++) {
-                    oddNumbers += array[i][k];
+                    sumOddRow += array[i][k];
                 }
             }
         }
-        System.out.printf("Sum of numbers in even row is: %d \n", evenNumbers);
-        System.out.printf("Sum of numbers in odd row is: %d \n", oddNumbers);
+        if (evenChecker) {
+            return sumEvenRow;
+        } else {
+            return sumOddRow;
+        }
     }
 
     private static void arrayPrint(int firstDimensionArrayLength, int secondDimensionArrayLength, int[][] array) {
