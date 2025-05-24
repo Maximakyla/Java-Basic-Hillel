@@ -5,83 +5,67 @@ import java.util.Scanner;
 public class MethodCreation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        raiseToSquire(scanner);
-        calculateVolumeCylinder(scanner);
-        sumAllElements(arrayCreator(scanner));
-        reverseText(scanner);
-        powNumber(scanner);
-        printStringNTimes(scanner);
+        System.out.println("1.Enter integer number ");
+        int number = scanner.nextInt();
+        System.out.printf("Squire of %d is: %d \n\n", number, raiseToSquire(number));
+        System.out.println("2.Enter radius of the cylinder");
+        double radius = scanner.nextDouble();
+        System.out.println("Enter altitude of the cylinder");
+        double altitude = scanner.nextDouble();
+        System.out.printf("Volume of the cylinder with radius %.2f and altitude %.2f is: %.2f \n\n", radius, altitude, calculateVolume(radius, altitude));
+        int[] array = {1, 2, 3, 4, 5};
+        System.out.printf("3.Sum of all elements in array is: %d\n\n ", sumAllElements(array));
+        scanner.nextLine();
+        System.out.println("4.Enter text to reverse: ");
+        String textToReverse = scanner.nextLine();
+        System.out.printf("Reverse text: %s \n\n", reverseText(textToReverse));
+        System.out.println("5. Enter number a : ");
+        int baseNumber = scanner.nextInt();
+        System.out.println("   Enter number b : ");
+        int toPow = scanner.nextInt();
+        System.out.printf("Result %d^%d is: %d.\n\n", baseNumber, toPow, powNumber(baseNumber, toPow));
+        printStringNTimes("Hello!", 10);
         scanner.close();
     }
 
-    private static void printStringNTimes(Scanner scanner) {
-        System.out.println("6.Enter integer number n: ");
-        int number = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter string line: ");
-        String line = scanner.nextLine();
-        for (int i = 0; i < number; i++) {
-            System.out.println(line);
+    public static void printStringNTimes(String text, int repeat) {
+        for (int i = 0; i < repeat; i++) {
+            System.out.println(text);
         }
         System.out.print("\n\n");
     }
 
-    private static void powNumber(Scanner scanner) {
-        System.out.println("5.Enter a: ");
-        int numberToPow = scanner.nextInt();
-        System.out.println("Enter b: ");
-        int pow = scanner.nextInt();
+    public static int powNumber(int numberToPow, int pow) {
         int result = numberToPow;
-        for (int i = 0; i < pow - 1; i++) {
+        for (int i = 2; i <= pow; i++) {
             result *= numberToPow;
         }
-        System.out.printf("Result %d ^ %d is: %d \n\n", numberToPow, pow, result);
+        return result;
     }
 
-    private static void reverseText(Scanner scanner) {
-        System.out.println("4.Enter text to reverse: ");
-        scanner.nextLine();
-        String textToReverse = scanner.nextLine();
+    public static String reverseText(String text) {
         String reverseText = "";
-        char[] array = textToReverse.toCharArray();
+        char[] array = text.toCharArray();
         for (int i = array.length - 1; i >= 0; i--) {
             reverseText += array[i];
         }
-        System.out.printf("Reverse text: %s \n\n", reverseText);
+        return reverseText;
     }
 
-    private static int[] arrayCreator(Scanner scanner) {
-        System.out.println("3.Enter array length");
-        int[] array = new int[scanner.nextInt()];
-        for (int i = 0; i < array.length; i++) {
-            System.out.printf("Enter value for %d element of array", i + 1);
-            array[i] = scanner.nextInt();
-        }
-        return array;
-    }
-
-    public static void sumAllElements(int[] array) {
+    public static int sumAllElements(int[] array) {
         int sum = 0;
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
-        System.out.printf("Sum of all elements in array is: %d\n\n ", sum);
+        return sum;
     }
 
-
-    private static void calculateVolumeCylinder(Scanner scanner) {
-        System.out.println("2.Enter radius of the cylinder");
-        double radiusCylinder = scanner.nextDouble();
-        System.out.println("Enter altitude of the cylinder");
-        double altitudeCylinder = scanner.nextDouble();
-        double volume = 3.14 * radiusCylinder * radiusCylinder * altitudeCylinder;
-        System.out.printf("Volume of the cylinder with radius %.2f and altitude %.2f is: %.2f \n\n", radiusCylinder, altitudeCylinder, volume);
+    public static double calculateVolume(double radius, double altitude) {
+        return 3.14 * radius * radius * altitude;
     }
 
-    private static void raiseToSquire(Scanner scanner) {
-        System.out.println("1.Enter integer number ");
-        int number = scanner.nextInt();
-        System.out.printf("Squire of %d is: %d \n\n", number, number * number);
+    public static int raiseToSquire(int toSquare) {
+        return toSquare * toSquare;
     }
 }
 
