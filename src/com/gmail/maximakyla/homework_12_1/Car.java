@@ -18,21 +18,21 @@ public class Car {
 
     }
 
-    public static void start() {
-        Car.startCommand();
-        Car.startElectricity();
-        Car.startFuelSystem();
+    public void start() {
+        this.startCommand();
+        this.startElectricity();
+        this.startFuelSystem();
     }
 
-    private static void startElectricity() {
-
-    }
-
-    private static void startCommand() {
+    private void startElectricity() {
 
     }
 
-    private static void startFuelSystem() {
+    private  void startCommand() {
+
+    }
+
+    private  void startFuelSystem() {
 
     }
 
