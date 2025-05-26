@@ -27,5 +27,8 @@ public class Employee {
         this.age = 0;
     }
 
+    public String getName() {
+        return this.surname + " " + this.givenName;
+    }
 
 }
